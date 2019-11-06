@@ -2,19 +2,19 @@
 
 namespace Mabele\Http\Controllers;
 
+use Mabele\Charts\StepSize;
 use Illuminate\Http\Request;
 
-use App\Charts\StepSize;
+
 
 class StepSizeController extends Controller
 {
     public function index(){
 
         $chart = new StepSize;
-        // $chart->labels(['One', 'Two', 'Three']);
-        // $chart->dataset('My dataset', 'line', [1, 2, 3, 4]);
-        // $chart->dataset('My dataset 2', 'line', [4, 3, 2, 1]);
-    
-        return view("facturacion");
+        $chart->labels(['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Septiempre', 'Octubre', 'Noviembre', 'Diciembre']);
+        $dataset = $chart->dataset('Valores de Facturacion', 'line', [rand(0, 150)/10, rand(0, 150)/10, rand(0, 150)/10, rand(0, 150)/10, rand(0, 150)/10, rand(0, 150)/10, rand(0, 150)/10, rand(0, 150)/10, rand(0, 150)/10, rand(0, 150)/10, rand(0, 150)/10, rand(0, 150)/10])->backgroundcolor('rgba(128, 0, 0, 0.5)');
+        $dataset->color('brown');
+        return view("facturacion", compact('chart'));
     }
 }

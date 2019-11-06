@@ -21,14 +21,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/facturacion', 'StepSizeController@index')->name('facturacion');
 
-Route::get('/agua', function () {
-    return view('agua');
-})->name('agua');
+Route::get('/agua', 'StepSizeController@index')->name('agua');
 
-Route::get('/luz', function () {
-    return view('luz');
-})->name('luz');
+Route::get('/luz', 'StepSizeController@index')->name('luz');
 
-Route::get('/gas', function () {
-    return view('gas');
-})->name('gas');
+Route::get('/gas', 'StepSizeController@index')->name('gas');
