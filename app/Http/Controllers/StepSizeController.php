@@ -13,8 +13,8 @@ class StepSizeController extends Controller
 
         $chart = new StepSize;
         $chart->labels(['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Septiempre', 'Octubre', 'Noviembre', 'Diciembre']);
-        $dataset = $chart->dataset('Valores de Facturacion', 'line', [rand(0, 150)/10, rand(0, 150)/10, rand(0, 150)/10, rand(0, 150)/10, rand(0, 150)/10, rand(0, 150)/10, rand(0, 150)/10, rand(0, 150)/10, rand(0, 150)/10, rand(0, 150)/10, rand(0, 150)/10, rand(0, 150)/10])->backgroundcolor('rgba(128, 0, 0, 0.5)');
-        $dataset->color('brown');
+        $dataset = $chart->dataset('Valores de Facturacion', 'line', [rand(0, 150)/10, rand(0, 150)/10, rand(0, 150)/10, rand(0, 150)/10, rand(0, 150)/10, rand(0, 150)/10, rand(0, 150)/10, rand(0, 150)/10, rand(0, 150)/10, rand(0, 150)/10, rand(0, 150)/10, rand(0, 150)/10])->backgroundcolor('rgba(23, 90, 194, 0.6)');
+        $dataset->color('blue');
         return view("facturacion", compact('chart'));
     }
 }
