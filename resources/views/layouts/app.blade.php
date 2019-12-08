@@ -50,6 +50,11 @@
                             <li class="nav-item">
                                     <a class="nav-link" href="{{route('gas')}}">Gas</a>
                             </li>
+                            <li class="nav-item">
+                                    <a class="nav-link" href="{{route('user.index')}}">Registro</a>
+                            </li>
+                            
+                        
                     </ul>
 
                     <!-- Right Side Of Navbar -->

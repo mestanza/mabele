@@ -26,3 +26,7 @@ Route::get('/agua', 'StepSizeController@index')->name('agua');
 Route::get('/luz', 'StepSizeController@index')->name('luz');
 
 Route::get('/gas', 'StepSizeController@index')->name('gas');
+
+Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+
+Route::resource('/user', 'UserController');
