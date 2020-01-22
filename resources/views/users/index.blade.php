@@ -28,11 +28,11 @@
 
         @foreach ($users as $user)
             <tr>
-                <td style="text-align: center"><b>{{ ++$i }}</b></td>
+                <td style="text-align: center"><b>{{ $user->id}}</b></td>
                 <td style="text-align: center">{{ $user->name}}</td>
                 <td style="text-align: center">{{ $user->email}}</td>
                 <td style="text-align: center">
-                @if( $user->isAdmin = 1)
+                @if( $user->isAdmin == 1)
                     Es Admin
                 
                 @else
@@ -41,6 +41,7 @@
                 </td>
                 <td style="text-align: center">
                 <form action="{{ route('user.destroy', $user->id) }}" method="post">
+                    <a class="btn btn-sm btn-success" href="{{ route('user.show', $user->id) }}">Detalles Usuario</a>
                     <a class="btn btn-sm btn-warning" href="{{ route('user.edit', $user->id) }}">Editar Usuario</a>
                     @csrf
                     @method('DELETE')

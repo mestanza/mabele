@@ -4,6 +4,7 @@ namespace Mabele\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Mabele\User;
+use Hash;
 
 class UserController extends Controller
 {
@@ -14,7 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::latest()->paginate(5);
+        $users = User::first()->paginate(5);
         return view('users.index', compact('users'))
                 ->with('i', (request()->input('page',1) -1));
     }
@@ -26,7 +27,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.create');
     }
 
     /**
@@ -37,7 +38,19 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required'
+        ]);
+
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+        return redirect()->route('home')
+            ->with('success', 'Usuario Creado Exitosamente');
     }
 
     /**
@@ -48,7 +61,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $users = User::find($id);
+        return view('users.detail', compact('users'));
     }
 
     /**
@@ -59,7 +73,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $users = User::find($id);
+        return view('users.edit', compact('users'));
     }
 
     /**
@@ -71,7 +86,20 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required'
+        ]);
+
+        $users = User::find($id);
+        $users->name = $request->get('name');
+        $users->email = $request->get('email');
+
+        $users->save();
+
+        return redirect()->route('home')
+            ->with('success', 'Usuario Creado Exitosamente');
+
     }
 
     /**
@@ -82,6 +110,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $users = User::find($id);
+        $users->delete();
+        return redirect()->route('home')
+            ->with('success', 'Usuario Eliminado Exitosamente');
     }
 }
